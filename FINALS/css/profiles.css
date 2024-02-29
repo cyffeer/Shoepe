@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+}
+
+.navbar-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.welcome2 {
+    flex-grow: 1;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.welcome2 img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.welcome2 h1 {
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* Style each navlink individually */
+.nav-link-container {
+    position: relative;
+}
+
+/* Create a pseudo-element for the white shadow effect */
+.nav-link-container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    transition: opacity 0.3s ease; /* Add a smooth transition effect */
+}
+
+/* Show the pseudo-element on hover */
+.nav-link-container:hover::before {
+    opacity: 1;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative; /* Create a positioning context for pseudo-elements */
+}
+
+h3 {
+    margin-top: 20px;
+    color: #fff;
+}
+
+h2 {
+    margin-top: 20px;
+    color: #fff;
+}
+
+.profile-pic {
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.item {
+    text-align: center;
+    margin: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-details {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.email {
+    font-style: italic;
+    color: #fff;
+}
+
+input[type="file"] {
+    color: white;
+}
