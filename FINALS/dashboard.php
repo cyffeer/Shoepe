@@ -104,6 +104,7 @@ function displayShoesGrid() {
         while ($row = mysqli_fetch_assoc($result)) {
             $imagepath = $row['imagepath'];
             $quantity = $row['quantity'];
+            $shoeId = $row['id'];
 
             echo "<div class='item'>";
             // Display shoe image and details
@@ -131,6 +132,14 @@ function displayShoesGrid() {
             } else {
                 echo "<br><center>₱" . $row['price'] . "</center>";
                 echo "<br><center>By:" . $row['username'] . "</center>";
+
+                // Form to submit for plotting sales
+              // Form to submit for plotting sales
+              echo "<form action='generate_plot.php' method='post'>";
+              echo "<input type='hidden' name='shoe_id' value='$shoeId'>";
+              // Style for the Plot Sales button
+              echo "<button type='submit' name='plot_sales' style='background-color: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;'>Plot Sales</button>";
+              echo "</form>";
             }
             echo "</div>";
         }
@@ -196,6 +205,6 @@ function displayShoesGrid() {
     displayNavigation();
     displayShoesGrid();
     ?>
-</body>
+
 
 </html>
