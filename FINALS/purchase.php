@@ -65,6 +65,30 @@ if ($updateShoesResult) {
         // Display an error message if the deletion from 'cart' fails
         echo "Error deleting item from the cart: " . mysqli_error($connCart);
     }
+    // Fetch the price of the shoe from the 'shoes' table
+    $priceQuery = "SELECT price FROM shoes WHERE id = $id";
+    $priceResult = mysqli_query($connCart, $priceQuery);
+
+    if ($priceResult) {
+        $priceRow = mysqli_fetch_assoc($priceResult);
+        $price = $priceRow['price'];
+    } else {
+        echo "Error fetching price: " . mysqli_error($connCart);
+    }
+
+    // Store the sales data
+    $checkoutDate = date('Y-m-d'); // Get the current date
+
+    // Prepare an SQL statement to insert the sales data
+    $salesQuery = "INSERT INTO sales (shoe_id, date, amount) VALUES (?, ?, ?)";
+
+    // Prepare and execute the statement
+    $stmt = $connCart->prepare($salesQuery);
+    $stmt->bind_param("iss", $id, $checkoutDate, $price);
+    $stmt->execute();
+
+    // Pass the shoe id to the Python script
+    $output = shell_exec("python script/sales.py $id");
 
     // Close the connection to 'cart' table
     mysqli_close($connCart);

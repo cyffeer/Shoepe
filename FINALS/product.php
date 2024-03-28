@@ -8,6 +8,7 @@
     <title>Shoepe  - Product</title>
     <link rel="shortcut icon" type="x-icon" href="css/icon.png">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -49,6 +50,7 @@
                     echo "<br><br>Price: " . $row['price'];
                     echo "<br><br>Size: " . $row['size'];
                     echo "<br><br>Quantity: " . $row['quantity'];
+                    echo "<br><br><canvas id='myChart'></canvas>";
                     echo "<br><br><a href='checkout.php?id=$id'>Buy Item</a>";
                     echo "<br><a href='dashboard.php'>Go Back</a>";
 
@@ -59,6 +61,38 @@
                     $_SESSION['price'] = $row['price'];
                     $_SESSION['size'] = $row['size'];
                     $_SESSION['quantity'] = $row['quantity'];
+
+                    // Call the Python script and pass the shoe id
+                    $json = shell_exec("python script/sales.py $id");
+
+                    // Decode the JSON data
+                    $data = json_decode($json, true);
+
+                    echo "
+                    <script>
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: " . json_encode($data['dates']) . ",
+                            datasets: [{
+                                label: 'Sales',
+                                data: " . json_encode($data['sales']) . ",
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    </script>
+                    ";
                 }  else {
                     // No match in the 'shoes' table, close the connection
                     mysqli_close($conn);
@@ -86,9 +120,9 @@
                         echo "<br><br>Price: " . $cartRow['price'];
                         echo "<br><br>Size: " . $cartRow['size'];
                         echo "<br><br>Quantity: " . $cartRow['quantity'];
+                        echo "<br><br><canvas id='myChart'></canvas>";
                         echo "<br><br><a href='checkout.php?id=$id'>Buy Item</a>";
                         echo "<br><a href='$back'>Go Back</a>";
-
                         $_SESSION['imagepath'] = $imagepath;
                         $_SESSION['shoename'] = $cartRow['shoename'];
                         $_SESSION['brand'] = $cartRow['brand'];
@@ -96,6 +130,37 @@
                         $_SESSION['price'] = $cartRow['price'];
                         $_SESSION['size'] = $cartRow['size'];
                         $_SESSION['quantity'] = $cartRow['quantity'];
+                        // Call the Python script and pass the shoe id
+                        $json = shell_exec("python script/sales.py $id");
+
+                        // Decode the JSON data
+                        $data = json_decode($json, true);
+
+                        echo "
+                        <script>
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: " . json_encode($data['dates']) . ",
+                                datasets: [{
+                                    label: 'Sales',
+                                    data: " . json_encode($data['sales']) . ",
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                        </script>
+                        ";
                     } else {
                         // The 'id' does not exist in either the 'shoes' or 'cart' table
                         echo "Product not found in the 'shoes' or 'cart' table!";
