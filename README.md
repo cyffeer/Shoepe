@@ -12,6 +12,7 @@
 - **Product Listings**: View detailed product descriptions and prices.
   ![image](https://github.com/user-attachments/assets/7078c5fc-14d6-4cb9-89f7-361d94928008)
 - **Shopping Cart**: Add products to the shopping cart and proceed to checkout.
+  ![image](https://github.com/user-attachments/assets/510bf29f-e50e-41ad-ad73-747a11ae06de)
 - **Sales Analytics**: Generate sales plots using Python.
   ![image](https://github.com/user-attachments/assets/8ed970b6-7eac-491f-8773-21b094f253a7)
 - **Product Reviews and History**: Users can leave reviews and ratings for purchased items and see the history of the whole community.
