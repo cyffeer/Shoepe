@@ -1,7 +1,7 @@
 # Shoepe
 **Shoepe** is an online sneaker marketplace that connects buyers and sellers from around the Philippines. It offers a wide selection of new and used sneakers, featuring an intuitive interface that allows users to browse, buy, and sell sneakers seamlessly. 
-This is a web-based e-commerce platform built using PHP for the backend, HTML/CSS and JavaScript for the frontend, and Python for generating sales plots. The platform allows users to browse products, add items to the cart, make purchases, and leave reviews. Administrators can also manage the product listings and view sales data through dynamically generated plots.
-![image](https://github.com/user-attachments/assets/7078c5fc-14d6-4cb9-89f7-361d94928008)
+-This is a web-based e-commerce platform built using PHP for the backend, HTML/CSS and JavaScript for the frontend, and Python for generating sales plots. The platform allows users to browse products, add items to the cart, make purchases, and leave reviews. Administrators can also manage the product listings and view sales data through dynamically generated plots.
+
 
 ## Features
 - **User Authentication**: Users can register, log in, and manage their profiles.
